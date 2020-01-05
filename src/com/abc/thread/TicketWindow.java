@@ -40,28 +40,31 @@ public class TicketWindow implements Runnable {
   private static final int max = 50;
   @Override
   public void run(){
-    while(index <=max){
-      System.out.println(Thread.currentThread()+ "当前的号为" + (this.index++));
-      try{
-        Thread.sleep(1000L);
-      }catch (InterruptedException e){
-        e.printStackTrace();
+    synchronized(TicketWindow.class){
+      while(index <=max){
+        System.out.println(Thread.currentThread()+ "当前的号为" + (this.index++));
+        try{
+          Thread.sleep(100L);
+        }catch (InterruptedException e){
+          e.printStackTrace();
+        }
       }
+
     }
   }
 
   public static void main( String[] args){
-//    final TicketWindow task = new TicketWindow();
-//    Thread t1 = new Thread(task,"一号窗口");
-//    Thread t2 = new Thread(task,"二号窗口");
-//    Thread t3 = new Thread(task,"三号窗口");
-//    Thread t4 = new Thread(task,"四号窗口");
-//    t1.start();
-//    t2.start();
-//    t3.start();
-//    t4.start();
-    IntStream.rangeClosed(1,5).boxed().map(i->new Thread(()->{
-      System.out.println(Thread.currentThread().getName());
-    })).forEach(Thread::start);
-  }
+    final TicketWindow task = new TicketWindow();
+    Thread t1 = new Thread(task,"一号窗口");
+    Thread t2 = new Thread(task,"二号窗口");
+    Thread t3 = new Thread(task,"三号窗口");
+    Thread t4 = new Thread(task,"四号窗口");
+    t1.start();
+    t2.start();
+    t3.start();
+    t4.start();
+//    IntStream.rangeClosed(1,5).boxed().map(i->new Thread(()->{
+//      System.out.println(Thread.currentThread().getName());
+//    })).forEach(Thread::start);
+ }
 }
