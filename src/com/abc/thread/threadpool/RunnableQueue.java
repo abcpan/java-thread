@@ -15,7 +15,7 @@ public interface RunnableQueue {
     void offer(Runnable runnable);
 
     // 工作线程通过take 方法获取Runnable
-    Runnable take();
+    Runnable take() throws InterruptedException;
 
     // 获取任务队列中的任务数量
     int size();
