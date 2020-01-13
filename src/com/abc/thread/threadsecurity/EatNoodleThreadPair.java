@@ -45,7 +45,7 @@ public class EatNoodleThreadPair extends  Thread{
     Tableware fork = new Tableware("fork");
     Tableware knife = new Tableware("knife");
     TablewarePair tablewarePair = new TablewarePair(fork,knife);
-   
+
     new EatNoodleThreadPair("小明",tablewarePair).start();
     new EatNoodleThreadPair("小花",tablewarePair).start();
 
