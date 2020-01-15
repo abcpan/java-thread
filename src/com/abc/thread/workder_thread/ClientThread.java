@@ -1,0 +1,30 @@
+package com.abc.thread.workder_thread;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author abcpan
+ * @version 1.0
+ * @date 2020/1/15 17:17
+ */
+public class ClientThread extends Thread {
+  private final Channel channel;
+  private static final Random random = new Random();
+  public ClientThread(String name,Channel channel){
+    super(name);
+    this.channel = channel;
+  }
+  @Override
+  public void run(){
+    try{
+      for(int i = 0; true;i++){
+        Request request = new Request(getName(),i);
+        channel.putRequest(request);
+        TimeUnit.MILLISECONDS.sleep(1000);
+      }
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+}
