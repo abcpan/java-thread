@@ -11,12 +11,12 @@ import java.util.concurrent.TimeUnit;
  * @project IntelliJ IDEA
  */
 public class MakerClientThread extends Thread {
-  private final ActiveObject activeObject;
+  private final ActiveObject activeObjectImpl;
   private final char fillchar;
 
-  public MakerClientThread(String name,ActiveObject activeObject){
+  public MakerClientThread(String name,ActiveObject activeObjectImpl){
     super(name);
-    this.activeObject = activeObject;
+    this.activeObjectImpl = activeObjectImpl;
     this.fillchar = name.charAt(0);
   }
 
@@ -25,7 +25,8 @@ public class MakerClientThread extends Thread {
     try{
       for(int i = 0; true; i++){
         // the call having return value
-        Result<String> result = activeObject.makeString(i,fillchar);
+        Result<String> result = activeObjectImpl.makeString(i,fillchar);
+        // in fact here can do anythings
         TimeUnit.MILLISECONDS.sleep(10);
         String value = result.getResultValue();
         System.out.println(getName() + ": value = " + value);

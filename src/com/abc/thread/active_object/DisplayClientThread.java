@@ -9,17 +9,17 @@ import java.util.concurrent.TimeUnit;
  * @project IntelliJ IDEA
  */
 public class DisplayClientThread extends Thread {
-  private final ActiveObject activeObject;
-  public DisplayClientThread(String name,ActiveObject activeObject){
+  private final ActiveObject activeObjectImpl;
+  public DisplayClientThread(String name,ActiveObject activeObjectImpl){
     super(name);
-    this.activeObject = activeObject;
+    this.activeObjectImpl = activeObjectImpl;
   }
   @Override
   public void run() {
     try{
       for(int i = 0; true; i++){
         String string = getName() + " " + i;
-        activeObject.displayString(string);
+        activeObjectImpl.displayString(string);
         TimeUnit.MILLISECONDS.sleep(200);
       }
     }catch (Exception e){

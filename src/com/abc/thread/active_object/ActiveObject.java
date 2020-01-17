@@ -10,5 +10,5 @@ import com.abc.thread.active_object.activeobject.Result;
  */
 public interface ActiveObject {
   Result<String> makeString(int count, char fillchar);
-  void displayString(String value);
+  void displayString(String string);
 }
