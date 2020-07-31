@@ -1,8 +1,5 @@
 package com.abc.thread;
 
-import com.sun.istack.internal.NotNull;
-import sun.awt.windows.ThemeReader;
-
 import java.util.stream.IntStream;
 
 /**
@@ -10,29 +7,7 @@ import java.util.stream.IntStream;
  * @version 1.0
  * @date 2020/1/3 17:45
  */
-//public class TicketWindow extends Thread {
-//  //柜台名称
-//  private final String name;
-//  private static int index = 1;
-//  //最大销售数量
-//  private static final int max = 50;
-//  public TicketWindow(String name){
-//    this.name = name;
-//  }
-//
-//  @Override
-//  public void run(){
-//    while(index <=max){
-//      System.out.println("柜台的名称为：" + this.name + "当前的号为" + (this.index++));
-//    }
-//  }
-//
-//  public static void main(String[] args){
-//    for(int i =1;i<5;i++){
-//      new TicketWindow(String.valueOf(i)).start();
-//    }
-//  }
-//}
+
 public class TicketWindow implements Runnable {
   //柜台名称
   private  int index = 1;

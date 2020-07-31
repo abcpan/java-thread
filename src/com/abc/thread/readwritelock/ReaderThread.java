@@ -1,7 +1,5 @@
 package com.abc.thread.readwritelock;
 
-import com.abc.thread.hook.TreadHook;
-import com.sun.corba.se.impl.transport.ReadTCPTimeoutsImpl;
 
 /**
  * @author abcpan

@@ -1,10 +1,5 @@
 package com.abc.thread.log;
 
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import java.util.concurrent.TimeUnit;
-
 /**
  * @author abcpan
  * @version 1.0

@@ -1,8 +1,5 @@
 package com.abc.thread.thread_per_message;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
-
 /**
  * @author abcpan
  * @version 1.0

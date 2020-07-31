@@ -1,6 +1,5 @@
 package com.abc.thread.log;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.FileWriter;
 import java.io.IOException;
