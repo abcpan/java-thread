@@ -1,8 +1,6 @@
 package com.abc.thread.active_object.activeobject;
 
 import com.abc.thread.active_object.ActiveObject;
-import com.abc.thread.active_object.DisplayClientThread;
-import com.abc.thread.active_object.MakerClientThread;
 
 /**
  * @author abc.pan
@@ -19,7 +17,7 @@ public class Proxy implements ActiveObject {
   }
   @Override
   public Result<String> makeString(int count, char fillchar) {
-     FutureResult<String> future = new FutureResult<>();
+    FutureResult<String> future = new FutureResult<>();
     scheduler.invoke(new MakeStringRequest(servant,future,count,fillchar));
     return future;
   }
@@ -27,5 +25,30 @@ public class Proxy implements ActiveObject {
   @Override
   public void displayString(String value) {
     scheduler.invoke(new DisplayStringRequest(servant,value));
+  }
+
+  /**
+   * 调度线程
+   */
+  public static class SchedulerThread extends Thread {
+    private final ActivationQueue queue;
+    public SchedulerThread(ActivationQueue queue){
+      this.queue = queue;
+    }
+
+    /**
+     * proxy execute
+     * @param request
+     */
+    public void invoke(MethodRequest request){
+      queue.putRequest(request);
+    }
+    @Override
+    public void run() {
+      while(true){
+        MethodRequest request = queue.takeRequest();
+        request.execute();
+      }
+    }
   }
 }

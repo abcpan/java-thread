@@ -3,7 +3,6 @@ package com.abc.thread.active_object;
 
 import com.abc.thread.active_object.activeobject.ActivationQueue;
 import com.abc.thread.active_object.activeobject.Proxy;
-import com.abc.thread.active_object.activeobject.SchedulerThread;
 import com.abc.thread.active_object.activeobject.Servant;
 
 /**
@@ -14,9 +13,12 @@ import com.abc.thread.active_object.activeobject.Servant;
  */
 public class ActiveObjectFactory {
   public static ActiveObject createActiveObject(){
-    Servant servant = new Servant();
+    // gen the scheduler
     ActivationQueue queue = new ActivationQueue();
-    SchedulerThread scheduler = new SchedulerThread(queue);
+    Proxy.SchedulerThread scheduler = new Proxy.SchedulerThread(queue);
+    //
+    Servant servant = new Servant();
+    //
     Proxy proxy = new Proxy(scheduler,servant);
     scheduler.start();
     return proxy;
