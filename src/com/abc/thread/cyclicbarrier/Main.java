@@ -11,15 +11,13 @@ public class Main {
   private static final int THREADS = 3;
   public static void main(String[] args){
     System.out.println("BEGIN====>");
-    // THREAD POOL
+    // 线程池
     ExecutorService service= Executors.newFixedThreadPool(THREADS);
-    // the operation when barrier is done
-
-    Runnable barrierAction = ()->{
-      System.out.println("Barrier Action!");
-    };
-
-    CyclicBarrier phaseBarrier = new CyclicBarrier(THREADS,barrierAction);
+    
+    // 栅栏
+    CyclicBarrier phaseBarrier = new CyclicBarrier(THREADS, () -> {
+      System.out.println("栅栏 动作");
+    });
 
     // confirm the job is done
     CountDownLatch doneLatch  = new CountDownLatch(THREADS);
@@ -28,9 +26,8 @@ public class Main {
       for(int i= 0;i< THREADS;i++){
         service.execute(new Mytask(phaseBarrier,doneLatch,i));
       }
-      System.out.println("WAITING===>");
+      System.out.println("在此处等待所有任务完成-->");
       doneLatch.await();
-      //wait the job is end
     }catch (Exception e){
 
     }finally {
